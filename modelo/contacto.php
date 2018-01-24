@@ -1,0 +1,96 @@
+<?php 
+
+/**
+* 
+*/
+class Contacto
+{
+
+	private $id;
+
+	private $nombre;
+	private $apellido;
+	private $telefono;
+	private $email;
+	private $direccion;
+	private $categoria;
+	private $fechaAlta;
+	private $userPropietarioEmail;
+
+	
+	function __construct($snombre, $apellido, $telefono, $email, $direccion, $categoria, $fechaAlta, $userPropietario)
+	{
+		$this->nombre = $nombre;
+		$this->apellido = $apellido;
+		$this->telefono = $telefono;
+		$this->email = $email;
+		$this->direccion = $direccion;
+		$this->categoria = $categoria;
+		$this->fechaAlta = $fechaAlta;
+		$this->userPropietarioEmail = $userPropietario->getEmail();
+	}
+
+	public function getNombre(){
+		return $this->nombre;
+	}
+	
+	public function getApellido(){
+		return $this->apellido;
+	}
+	
+	public function getTelefono(){
+		return $this->telefono;
+	}
+	
+	public function getEmail(){
+		return $this->email;
+	}
+	
+	public function getDireccion(){
+		return $this->direccion;
+	}
+	
+	public function getCategoria(){
+		return $this->categoria;
+	}
+	
+	public function getFechaAlta(){
+		return $this->fechaAlta;
+	}
+	
+	public function getUserPropietarioEmail(){
+		return $this->userPropietarioEmail;
+	}
+
+	public function setNombre($nombre){
+		$this->nombre = $nombre;
+	}
+
+	public function setApellido($apellido){
+		$this->apellido = $apellido;
+	}
+
+	public function setTelefono($telefono){
+		$this->telefono = $telefono;
+	}
+
+	public function setEmail($email){
+		$this->email = $email;
+	}
+
+	public function setDireccion($direccion){
+		$this->direccion = $direccion;
+	}
+
+	public function setCategoria($categoria){
+		$this->categoria = $categoria;
+	}
+
+
+
+}
+
+
+
+
+?>
