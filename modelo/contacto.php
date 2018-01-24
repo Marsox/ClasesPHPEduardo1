@@ -1,10 +1,9 @@
 <?php 
 
-/**
-* 
-*/
-class Contacto
-{
+include_once '../../lib.php';
+include_once '../../modelo/dbpdo.php';
+
+class Contacto{
 
 	private $id;
 
@@ -16,6 +15,7 @@ class Contacto
 	private $categoria;
 	private $fechaAlta;
 	private $userPropietarioEmail;
+
 
 	
 	function __construct($snombre, $apellido, $telefono, $email, $direccion, $categoria, $fechaAlta, $userPropietario)
