@@ -28,9 +28,26 @@ class Usuario{
 			return false;
 		}
 	}
+	public static function nuevoUsuario($nombre, $password, $apellido, $email, $nick){
+		$dbpdo = new DBPDO('usuario');
+		$usuarios = $dbpdo->select(array('email'=> $email));
+		if(count($usuarios) > 0){
+			return false;
+		}else{
+			$dbpdo->insert(array(
+									'nombre' => $nombre,
+									'md5password' => md5($password),
+									'apellido' => $apellido,
+									'email' => $email,
+									'nick' => $nick
+								));
+			$usuario = new Usuario($nombre, md5($password), $apellido, $email, $nick);
+			return $usuario;
+		}
+	}
 
 
-	public function __construct($nombre, $md5password, $apellido, $email, $nick){
+	private function __construct($nombre, $md5password, $apellido, $email, $nick){
 		$this->nombre = $nombre;
 		$this->md5password = $md5password;
 		$this->apellido = $apellido;
