@@ -1,16 +1,33 @@
 <?php 
 
-/**
-* 
-*/
-class Usuario
-{
+include_once '../../lib.php';
+include_once '../../modelo/dbpdo.php';
+
+class Usuario{
 	
 	private $nombre;
 	private $md5password;
 	private $apellido;
 	private $email;
 	private $nick;
+
+	public static function getByEmail($email){
+		$dbpdo = new DBPDO('usuario');
+		$usuarios = $dbpdo->select(array('email'=> $email));
+		if(count($usuarios) > 0){
+			$usuarioComoArray = $usuarios[0];
+			$usuario = new Usuario(
+				$usuarioComoArray['nombre'],
+				$usuarioComoArray['md5password'],
+				$usuarioComoArray['apellido'],
+				$usuarioComoArray['email'],
+				$usuarioComoArray['nick']
+			);
+			return $usuario;
+		}else{
+			return false;
+		}
+	}
 
 
 	public function __construct($nombre, $md5password, $apellido, $email, $nick){
