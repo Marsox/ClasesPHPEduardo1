@@ -1,6 +1,9 @@
 <?php 
-
-
+include_once '../../lib.php';
+session_start();
+if(hayErrores()){
+	mostrarErrores();
+}
  ?>
 
  <!DOCTYPE html>

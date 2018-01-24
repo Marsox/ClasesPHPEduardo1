@@ -2,7 +2,7 @@
 
 include_once '../../lib.php';
 include_once '../../modelo/usuario.php';
-
+session_start();
 errorInit();
 
 $email = $_POST['email'];

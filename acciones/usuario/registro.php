@@ -1,9 +1,8 @@
 <?php
 
 include_once '../../lib.php';
-include_once '../../modelo/dbpdo.php';
 include_once '../../modelo/usuario.php';
-
+session_start();
 errorInit();
 
 $nombre = $_POST['nombre'];
@@ -72,21 +71,9 @@ if(empty($pass2)){
 }
 
 if(!hayErrores()){
-	$dbpdo = new DBPDO('usuario');
-	$md5password = md5($pass);
-	$dbpdo->insert(array(
-									'nombre' => $nombre,
-									'md5password' => $md5password,
-									'apellido' => $apellido,
-									'email' => $email,
-									'nick' => $nick
-								));
-
-	$u = new Usuario($nombre, $md5password, $apellido, $email, $nick);
-	
+	$u = Usuario::nuevoUsuario($nombre, $pass, $apellido, $email, $nick);	
 
 	$_SESSION['user'] = $u;
-
 
 	header('Location: ../../paginas/contacto/lista.php');
 }else{
