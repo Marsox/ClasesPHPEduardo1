@@ -10,7 +10,32 @@ class Contacto{
 
 	private $nombre;
 	private $apellido;
-	private $tel;
+	private $telefono;
+	private $email;
+	private $direccion;
+	private $categoria;
+	private $fechaAlta;
+	private $userPropietarioEmail;
+
+	public static function getForOwner($ownerEmail){
+		$dbpdo = new DBPDO('contacto');
+		$contactosComoArrays = $dbpdo->select(array('userPropietarioEmail'=> $ownerEmail));
+		$contactosComoObjetos = array();
+		foreach ($contactosComoArrays as $contactoComoArray) {
+			$contactoComoObjeto = new Contacto(
+				$contactoComoArray['nombre'],
+				$contactoComoArray['apellido'],
+				$contactoComoArray['telefono'],
+				$contactoComoArray['email'],
+				$contactoComoArray['direccion'],
+				$contactoComoArray['categoria'],
+				$contactoComoArray['fechaAlta'],
+				$contactoComoArray['userPropietarioEmail']
+			);
+			array_push($contactosComoObjetos, $contactoComoObjeto);
+		}
+		return $contactosComoObjetos;
+	}
 
 	
 	function __construct($snombre, $apellido, $telefono, $email, $direccion, $categoria, $fechaAlta, $userPropietario)
