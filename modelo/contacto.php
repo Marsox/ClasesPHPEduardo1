@@ -19,6 +19,7 @@ class Contacto{
 
 	public static function getForOwner($ownerEmail){
 		$dbpdo = new DBPDO('contacto');
+		$dbpdo->modeDEV = false;
 		$contactosComoArrays = $dbpdo->select(array('userPropietarioEmail'=> $ownerEmail));
 		$contactosComoObjetos = array();
 		foreach ($contactosComoArrays as $contactoComoArray) {

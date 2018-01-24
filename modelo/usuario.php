@@ -3,6 +3,7 @@
 include_once '../../lib.php';
 include_once '../../modelo/dbpdo.php';
 
+
 class Usuario{
 	
 	private $nombre;
@@ -13,6 +14,7 @@ class Usuario{
 
 	public static function getByEmail($email){
 		$dbpdo = new DBPDO('usuario');
+		$dbpdo->modeDEV = false;
 		$usuarios = $dbpdo->select(array('email'=> $email));
 		if(count($usuarios) > 0){
 			$usuarioComoArray = $usuarios[0];
@@ -30,6 +32,7 @@ class Usuario{
 	}
 	public static function nuevoUsuario($nombre, $password, $apellido, $email, $nick){
 		$dbpdo = new DBPDO('usuario');
+		$dbpdo->modeDEV = false;
 		$usuarios = $dbpdo->select(array('email'=> $email));
 		if(count($usuarios) > 0){
 			return false;
