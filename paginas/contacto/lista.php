@@ -30,5 +30,7 @@ session_start();
 		?>
 		
 	</table>
+
+	<a href="nuevoContacto.php">Nuevo</a>
 </body>
 </html>
