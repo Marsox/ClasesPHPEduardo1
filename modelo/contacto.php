@@ -17,6 +17,22 @@ class Contacto{
 	private $fechaAlta;
 	private $userPropietarioEmail;
 
+	public static function nuevoContacto($nombre, $apellido, $telefono, $email, $direccion, $categoria, $userPropietario){
+		$fechaAlta = time() + 3600;
+		$dbpdo = new DBPDO('contacto');
+		$dbpdo->modeDEV = false;
+		$params = array('nombre' => $nombre,
+			'apellido' => $apellido,
+			'telefono' => $telefono,
+			'email' => $email,
+			'direccion' => $direccion,
+			'categoria' => $categoria,
+			'fechaAlta' => $fechaAlta,
+			'userPropietarioEmail' => $userPropietario->getEmail());
+		$id = $dbpdo->insert($params);
+		return new Contacto($id, $nombre, $apellido, $telefono, $email, $direccion, $categoria, $fechaAlta, $userPropietario->getEmail());
+	}
+
 	public static function getForOwner($ownerEmail){
 		$dbpdo = new DBPDO('contacto');
 		$dbpdo->modeDEV = false;
@@ -24,6 +40,7 @@ class Contacto{
 		$contactosComoObjetos = array();
 		foreach ($contactosComoArrays as $contactoComoArray) {
 			$contactoComoObjeto = new Contacto(
+				$contactoComoArray['id'],
 				$contactoComoArray['nombre'],
 				$contactoComoArray['apellido'],
 				$contactoComoArray['telefono'],
@@ -39,8 +56,8 @@ class Contacto{
 	}
 
 	
-	function __construct($snombre, $apellido, $telefono, $email, $direccion, $categoria, $fechaAlta, $userPropietario)
-	{
+	private function __construct($id, $nombre, $apellido, $telefono, $email, $direccion, $categoria, $fechaAlta, $userPropietarioEmail){
+		$this->id = $id;
 		$this->nombre = $nombre;
 		$this->apellido = $apellido;
 		$this->telefono = $telefono;
@@ -48,7 +65,11 @@ class Contacto{
 		$this->direccion = $direccion;
 		$this->categoria = $categoria;
 		$this->fechaAlta = $fechaAlta;
-		$this->userPropietarioEmail = $userPropietario->getEmail();
+		$this->userPropietarioEmail = $userPropietarioEmail;
+	}
+
+	public function getId(){
+		return $this->id;
 	}
 
 	public function getNombre(){
