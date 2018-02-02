@@ -55,6 +55,28 @@ class Contacto{
 		return $contactosComoObjetos;
 	}
 
+	public static function getById($id){
+		$dbpdo = new DBPDO('contacto');
+		$dbpdo->modeDEV = false;
+		$contactosComoArrays = $dbpdo->getID($id);
+		if (count($contactosComoArrays)>0) {
+			$contactoComoArray = $contactosComoArrays[0];
+			$contactoComoObjeto = new Contacto(
+				$contactoComoArray['id'],
+				$contactoComoArray['nombre'],
+				$contactoComoArray['apellido'],
+				$contactoComoArray['telefono'],
+				$contactoComoArray['email'],
+				$contactoComoArray['direccion'],
+				$contactoComoArray['categoria'],
+				$contactoComoArray['fechaAlta'],
+				$contactoComoArray['userPropietarioEmail']
+			);
+			return $contactoComoObjeto;
+		}else{
+			return false;
+		}
+	}
 	
 	private function __construct($id, $nombre, $apellido, $telefono, $email, $direccion, $categoria, $fechaAlta, $userPropietarioEmail){
 		$this->id = $id;
@@ -66,6 +88,12 @@ class Contacto{
 		$this->categoria = $categoria;
 		$this->fechaAlta = $fechaAlta;
 		$this->userPropietarioEmail = $userPropietarioEmail;
+	}
+
+	public function borrar(){
+		$dbpdo = new DBPDO('contacto');
+		$dbpdo->modeDEV = false;
+		$dbpdo->delete(array('id' => $this->id));
 	}
 
 	public function getId(){
