@@ -1,10 +1,9 @@
 <?php 
 include_once '../../lib.php';
 include_once '../../modelo/categoria.php';
+include_once '../../modelo/usuario.php';
 session_start();
-
- ?>
-
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +30,7 @@ session_start();
 			</p>
 			<p>
 				<label for="telefono"> telefono </label>
-				<input type="text" name="telefono">
+				<input type="number" name="telefono">
 			</p>
 			<p>
 				<label for="email"> email </label>

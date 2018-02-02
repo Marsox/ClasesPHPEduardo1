@@ -24,7 +24,8 @@ class Categoria{
 	}
 
 	private function __construct($id, $nombre){
-		# code...
+		$this->id = $id;
+		$this->nombre = $nombre;
 	}
 
 	public function getId(){

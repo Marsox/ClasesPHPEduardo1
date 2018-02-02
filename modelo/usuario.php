@@ -1,7 +1,5 @@
 <?php 
-
-include_once '../../lib.php';
-include_once '../../modelo/dbpdo.php';
+include_once 'dbpdo.php';
 
 
 class Usuario{
