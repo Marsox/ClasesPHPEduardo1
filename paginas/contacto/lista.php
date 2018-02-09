@@ -30,7 +30,7 @@ session_start();
 			"<tr>
 				<td>".$contacto->getNombre()." ".$contacto->getApellido()."</td>
 				<td>".$contacto->getTelefono()."</td>
-				<td><a href=\"editarContacto.php\">Modificar</a></td>
+				<td><a href=\"editarContacto.php?id=".$contacto->getId()."\">Modificar</a></td>
 				<td><a href=\"../../acciones/contacto/borrar.php?id=".$contacto->getId()."\">Borrar</a></td>
 			</tr>";
 		}
