@@ -50,15 +50,15 @@ if(empty($pass)){
 	if(strlen($pass) < 6) {
 		pushError('pass','La contraseñá debe tener al menos 6 caracteres');
 	}else{
-		/*if (strpos('[a-z]',$pass) == false) {
-			pushError('pass','La contraseña debe contener al menos una minuscula');
-		}
-		if (strpos('[A-Z]',$pass) == false) {
-			pushError('pass','La contraseña debe contener al menos una mayuscula');
-		}
-		if (strpos('[0-9]',$pass) == false) {
-			pushError('pass','La contraseña debe contener al menos un numero');
-		}*/
+		// if (strpos('[a-z]',$pass) == false) {
+		// 	pushError('pass','La contraseña debe contener al menos una minuscula');
+		// }
+		// if (strpos('[A-Z]',$pass) == false) {
+		// 	pushError('pass','La contraseña debe contener al menos una mayuscula');
+		// }
+		// if (strpos('[0-9]',$pass) == false) {
+		// 	pushError('pass','La contraseña debe contener al menos un numero');
+		// }
 	}
 }
 
