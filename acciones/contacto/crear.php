@@ -42,7 +42,11 @@ if (isset($_SESSION['user'])) {
 		$categoria,
 		$userPropietario);
 
-	header('Location: ../../paginas/contacto/lista.php');
+	if(!hayErrores()){
+		header('Location: ../../paginas/contacto/lista.php');
+	}else{
+		header('Location: ../../paginas/contacto/crear.php');
+	}
 
 }else{
 	//echo json_encode($_SESSION);
