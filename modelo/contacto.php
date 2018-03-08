@@ -1,7 +1,6 @@
 <?php 
 
-include_once '../../lib.php';
-include_once '../../modelo/dbpdo.php';
+include_once 'dbpdo.php';
 
 
 class Contacto{
@@ -94,6 +93,18 @@ class Contacto{
 		$dbpdo = new DBPDO('contacto');
 		$dbpdo->modeDEV = false;
 		$dbpdo->delete(array('id' => $this->id));
+	}
+	public function guardar(){
+		$dbpdo = new DBPDO('contacto');
+		$dbpdo->modeDEV = false;
+		$dbpdo->update(array('nombre'=>$this->nombre,
+													'apellido'=>$this->apellido,
+													'telefono'=>$this->telefono,
+													'email'=>$this->email,
+													'direccion'=>$this->direccion,
+													'categoria'=>$this->categoria
+													),
+									 array('id' => $this->id));
 	}
 
 	public function getId(){

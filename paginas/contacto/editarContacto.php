@@ -2,6 +2,7 @@
 include_once '../../lib.php';
 include_once '../../modelo/categoria.php';
 include_once '../../modelo/usuario.php';
+include_once '../../modelo/contacto.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -20,6 +21,7 @@ session_start();
 		$id = $_GET["id"];
 		if (isset($id)) {
 			$contacto = Contacto::getById($id);
+
 			if ($contacto != false) {
 				if ($contacto->getUserPropietarioEmail() == $_SESSION['user']->getEmail()) {
 				?>
@@ -58,7 +60,7 @@ session_start();
 								} ?>
 							</select>
 						</p>
-						<input type="submit" value="Crear">
+						<input type="submit" value="Guardar">
 					</form>
 				<?php
 				}else {
